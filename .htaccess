@@ -1,0 +1,25 @@
+RewriteEngine On
+#FORCE https://
+#RewriteCond %{HTTPS} off
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+#Force www:
+#RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^carfordrivingtest.com [NC]
+#RewriteRule ^(.*)$ https://www.carfordrivingtest.com/$1 [L,R=301,NC]
+
+#Force non-www:
+#RewriteEngine On
+#RewriteCond %{HTTP_HOST} !^www.carfordrivingtest.com$ [NC]
+#RewriteRule ^(.*)$ https://www.carfordrivingtest.com/$1 [L,R=301]
+
+Options +MultiViews
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+#disable directory listing
+Options -Indexes
+
+ErrorDocument 404 https://www.rufence.com
+
